@@ -100,7 +100,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="fCC-88-JLJ">
-                                <rect key="frame" x="20" y="172" width="280" height="37"/>
+                                <rect key="frame" x="20" y="217" width="280" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Cancel">
@@ -114,11 +114,33 @@
                                     <action selector="cancel:" destination="yfC-6v-gEs" eventType="touchUpInside" id="pTd-3V-Gge"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Qpk-RS-6aQ">
+                                <rect key="frame" x="20" y="172" width="280" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Async Download">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="asyncDownload:" destination="yfC-6v-gEs" eventType="touchUpInside" id="gUI-0W-joj"/>
+                                </connections>
+                            </button>
+                            <progressView opaque="NO" contentMode="scaleToFill" id="awK-el-7lG">
+                                <rect key="frame" x="20" y="278" width="280" height="9"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            </progressView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="2oT-ta-Vts"/>
                     <connections>
+                        <outlet property="asyncDownloadButton" destination="Qpk-RS-6aQ" id="5Gk-Im-Ndw"/>
+                        <outlet property="progressView" destination="awK-el-7lG" id="Aan-Kp-T0V"/>
+                        <outlet property="syncDownloadButton" destination="QxF-tg-8cA" id="vrR-SJ-t0d"/>
                         <outlet property="urlField" destination="il0-Ps-0km" id="l2x-Gb-cG8"/>
                     </connections>
                 </viewController>
@@ -159,8 +181,12 @@
         <class className="JDDownloadViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/JDDownloadViewController.h"/>
             <relationships>
+                <relationship kind="action" name="asyncDownload:"/>
                 <relationship kind="action" name="cancel:"/>
                 <relationship kind="action" name="syncDownload:"/>
+                <relationship kind="outlet" name="asyncDownloadButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="progressView" candidateClass="UIProgressView"/>
+                <relationship kind="outlet" name="syncDownloadButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="urlField" candidateClass="UITextField"/>
             </relationships>
         </class>

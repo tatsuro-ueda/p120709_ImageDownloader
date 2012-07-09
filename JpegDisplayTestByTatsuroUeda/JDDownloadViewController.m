@@ -10,12 +10,25 @@
 
 @implementation JDDownloadViewController
 @synthesize urlField = _urlField;
+@synthesize progressView = _progressView;
+@synthesize syncDownloadButton = _syncDownloadButton;
+@synthesize asyncDownloadButton = _asyncDownloadButton;
+@synthesize urlConnection = _urlConnection;
+@synthesize downloadedFileHandle = _downloadedFileHandle;
+@synthesize downloadedFilePath = _downloadedFilePath;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        
+        // メンバ変数を初期化する
+        _urlConnection = nil;
+        _downloadedFileHandle = nil;
+        _downloadedFilePath = nil;
+        _downloadedFileSize = 0;
+        _expectedFileSize = 0;
     }
     return self;
 }
@@ -48,6 +61,7 @@
 - (void)viewDidUnload
 {
     [self setUrlField:nil];
+    [self setProgressView:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -166,11 +180,27 @@
     }
 }
 
+// キャンセルボタンの処理
 - (IBAction)cancel:(id)sender {
-    [self dismissModalViewControllerAnimated:YES];
+    
+    // プロパティ「urlConnection」が「nil」でないときは、非同期接続中とみなす
+    if (self.urlConnection) {
+        
+        // 接続処理をキャンセルする
+        [self.urlConnection cancel];
+        
+        // 後処理を呼び出す
+        [self connectionDidFailed];
+    }
+    else {
+        
+        // ビューコントローラを閉じる
+        [self dismissModalViewControllerAnimated:YES];
+    }
 }
 
 // 新しいファイルのファイルパスを取得する
+// URLからファイル名を取得し、ローカルのDocumentsフォルダに格納するようなパスを返す
 - (NSString *)newFilePathWithURL:(NSURL *)url
 {
     // URLからベースになっているファイル名を取得する
@@ -241,4 +271,187 @@
     return newFilePath;
 }
 
+// 非同期ダウンロードボタンの処理
+- (IBAction)asyncDownload:(id)sender {
+    
+    // 入力されているURLを取得する
+    NSURL *url = [NSURL URLWithString:self.urlField.text];
+    
+    // URLの構文が間違っているときなど、「NSURL」のインスタンスが
+    // 作成できないときはエラーメッセージを表示する
+    if (!url) {
+        
+        NSString *errMsg, *errTitle, *cancelButton;
+        UIAlertView *alertView;
+        
+        // 表示する文字列
+        errTitle = @"Error";
+        errMsg = @"The URL is invalid.";
+        cancelButton = @"OK";
+        
+        // アラートビューを表示する
+        alertView = [[UIAlertView alloc] initWithTitle:errTitle
+                                               message:errMsg
+                                              delegate:nil
+                                     cancelButtonTitle:cancelButton
+                                     otherButtonTitles:nil];
+        [alertView show];
+        
+        // 処理終了
+        return;
+    }
+    // ソフトウェアキーボードを非表示にする
+    [self.urlField resignFirstResponder];
+    
+    // ダウンロードしたファイルを書き込むファイルを作成する
+    NSString *filePath = [self newFilePathWithURL:url];
+    
+    [[NSFileManager defaultManager] createFileAtPath:filePath
+                                            contents:nil
+                                          attributes:nil];
+    self.downloadedFilePath = filePath;
+    
+    self.downloadedFileHandle = [NSFileHandle fileHandleForWritingAtPath:filePath];
+    
+    // 取得要求の作成
+    NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url];
+    
+    // 接続開始
+    self.urlConnection = [NSURLConnection connectionWithRequest:urlRequest delegate:self];
+    
+    // ダウンロード中はボタンは無効にする
+    self.syncDownloadButton.enabled = NO;
+    self.asyncDownloadButton.enabled = NO;
+    
+    // プログレスビューをリセットしてから表示する
+    self.progressView.progress = 0;
+    self.progressView.hidden = NO;
+    
+    // ファイルサイズをクリアする
+    _expectedFileSize = _downloadedFileSize = 0;
+}
+
+// ダウンロード完了時に呼ばれるメソッド
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection
+{
+    // ダウンロードが完了したので、ファイルハンドルを閉じる
+    [self.downloadedFileHandle synchronizeFile];
+    [self.downloadedFileHandle closeFile];
+    self.downloadedFileHandle = nil;
+    
+    // ダウンロード画面を閉じる
+    [self dismissModalViewControllerAnimated:YES];
+    
+    // 接続情報を破棄
+    self.urlConnection = nil;
+    self.downloadedFilePath = nil;
+}
+
+// 読み込み失敗時に呼ばれるメソッド
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
+{
+    // エラーメッセージを表示する
+    NSString *errMsg, *errTitle, *cancelButton;
+    UIAlertView *alertView;
+    
+    // 表示する文字列
+    errTitle = @"Download Error";
+    cancelButton = @"OK";
+    errMsg = @"Couldn't download the file. ";
+    
+    // エラー情報が取得できたときは、エラー情報からの文字列を追加する
+    if (error) {
+        
+        errMsg = [errMsg stringByAppendingString:[error localizedDescription]];
+    }
+    
+    // アラートビューを表示する
+    alertView = [[UIAlertView alloc] initWithTitle:errTitle
+                                           message:errMsg
+                                          delegate:nil
+                                 cancelButtonTitle:cancelButton
+                                 otherButtonTitles:nil];
+    [alertView show];
+    
+    // 後処理を呼び出す
+    [self connectionDidFailed];
+}
+
+// レスポンスを受け取った直後に呼ばれるメソッド
+- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
+{
+    // もし、「response」が「NSHTTPURLResponse」ならば
+    // HTTPのステータスコードもチェックする
+    if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
+        
+        // HTTPのステータスコードが400以上ならエラー扱いとする
+        NSInteger statusCode = [(NSHTTPURLResponse *)response statusCode];
+        
+        if (statusCode >= 400) {
+            
+            // HTTPのステータスコードとエラーメッセージを渡す
+            NSError *error;
+            NSString *errStr;
+            NSDictionary *userInfo = nil;
+            
+            errStr = [NSHTTPURLResponse localizedStringForStatusCode:statusCode];
+            if (errStr) {
+                
+                // 「NSError」クラスの「localizedDescription」メソッドで
+                // 取得されるエラーメッセージを設定する
+                userInfo = [NSDictionary dictionaryWithObject:errStr 
+                                                       forKey:NSLocalizedDescriptionKey];
+            }
+            error = [NSError errorWithDomain:@"HTTPErrorDomain" 
+                                        code:statusCode
+                                    userInfo:userInfo];
+            [self connection:connection
+            didFailWithError:error];
+            
+            return;
+        }
+    }
+    // ダウンロードするファイルのファイルサイズを取得する
+    _expectedFileSize = response.expectedContentLength;
+}
+
+// データ受信時に呼ばれるメソッド
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
+{
+    // 受信したデータをファイルに書き込む
+    [self.downloadedFileHandle writeData:data];
+    
+    // ダウンロードするファイルのファイルサイズが取得できていたら
+    // プログレスビューを更新する
+    _downloadedFileSize += data.length;
+    
+    if (_expectedFileSize > 0) {
+        
+        self.progressView.progress = (double)_downloadedFileSize / (double)_expectedFileSize;
+    }
+}
+
+// 接続処理失敗時の後処理を行う
+- (void)connectionDidFailed
+{
+    // ダウンロードが失敗したので、ファイルを閉じる
+    [self.downloadedFileHandle synchronizeFile];
+    [self.downloadedFileHandle closeFile];
+    self.downloadedFileHandle = nil;
+    
+    // 中途半端になっているので、ファイルも削除する
+    [[NSFileManager defaultManager] removeItemAtPath:self.downloadedFilePath
+                                               error:NULL];
+    
+    // ダウンロードに関する情報を破棄する
+    self.urlConnection = nil;
+    self.downloadedFilePath = nil;
+    
+    // URLを入力し直して、ダウンロードできるようボタンを有効化する
+    self.syncDownloadButton.enabled = YES;
+    self.asyncDownloadButton.enabled = YES;
+    
+    // プログレスビューを非表示
+    self.progressView.hidden = YES;
+}
 @end
