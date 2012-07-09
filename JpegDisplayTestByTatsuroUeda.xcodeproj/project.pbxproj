@@ -1,0 +1,294 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		548959E415A2860700D4D11C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 548959E315A2860700D4D11C /* UIKit.framework */; };
+		548959E615A2860700D4D11C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 548959E515A2860700D4D11C /* Foundation.framework */; };
+		548959E815A2860700D4D11C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 548959E715A2860700D4D11C /* CoreGraphics.framework */; };
+		548959EE15A2860700D4D11C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 548959EC15A2860700D4D11C /* InfoPlist.strings */; };
+		548959F015A2860700D4D11C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 548959EF15A2860700D4D11C /* main.m */; };
+		548959F415A2860700D4D11C /* JDAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 548959F315A2860700D4D11C /* JDAppDelegate.m */; };
+		548959F715A2860700D4D11C /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 548959F515A2860700D4D11C /* MainStoryboard.storyboard */; };
+		548959FA15A2860700D4D11C /* JDMasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 548959F915A2860700D4D11C /* JDMasterViewController.m */; };
+		548959FD15A2860700D4D11C /* JDDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 548959FC15A2860700D4D11C /* JDDetailViewController.m */; };
+		54BFA92E15A5253900CBB9E6 /* JDDownloadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 54BFA92D15A5253900CBB9E6 /* JDDownloadViewController.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		548959DF15A2860700D4D11C /* JpegDisplayTestByTatsuroUeda.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JpegDisplayTestByTatsuroUeda.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		548959E315A2860700D4D11C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		548959E515A2860700D4D11C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		548959E715A2860700D4D11C /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		548959EB15A2860700D4D11C /* JpegDisplayTestByTatsuroUeda-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "JpegDisplayTestByTatsuroUeda-Info.plist"; sourceTree = "<group>"; };
+		548959ED15A2860700D4D11C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		548959EF15A2860700D4D11C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		548959F115A2860700D4D11C /* JpegDisplayTestByTatsuroUeda-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "JpegDisplayTestByTatsuroUeda-Prefix.pch"; sourceTree = "<group>"; };
+		548959F215A2860700D4D11C /* JDAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JDAppDelegate.h; sourceTree = "<group>"; };
+		548959F315A2860700D4D11C /* JDAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JDAppDelegate.m; sourceTree = "<group>"; };
+		548959F615A2860700D4D11C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
+		548959F815A2860700D4D11C /* JDMasterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JDMasterViewController.h; sourceTree = "<group>"; };
+		548959F915A2860700D4D11C /* JDMasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JDMasterViewController.m; sourceTree = "<group>"; };
+		548959FB15A2860700D4D11C /* JDDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JDDetailViewController.h; sourceTree = "<group>"; };
+		548959FC15A2860700D4D11C /* JDDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JDDetailViewController.m; sourceTree = "<group>"; };
+		54BFA92C15A5253900CBB9E6 /* JDDownloadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDDownloadViewController.h; sourceTree = "<group>"; };
+		54BFA92D15A5253900CBB9E6 /* JDDownloadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDDownloadViewController.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		548959DC15A2860700D4D11C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				548959E415A2860700D4D11C /* UIKit.framework in Frameworks */,
+				548959E615A2860700D4D11C /* Foundation.framework in Frameworks */,
+				548959E815A2860700D4D11C /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		548959D415A2860700D4D11C = {
+			isa = PBXGroup;
+			children = (
+				548959E915A2860700D4D11C /* JpegDisplayTestByTatsuroUeda */,
+				548959E215A2860700D4D11C /* Frameworks */,
+				548959E015A2860700D4D11C /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		548959E015A2860700D4D11C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				548959DF15A2860700D4D11C /* JpegDisplayTestByTatsuroUeda.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		548959E215A2860700D4D11C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				548959E315A2860700D4D11C /* UIKit.framework */,
+				548959E515A2860700D4D11C /* Foundation.framework */,
+				548959E715A2860700D4D11C /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		548959E915A2860700D4D11C /* JpegDisplayTestByTatsuroUeda */ = {
+			isa = PBXGroup;
+			children = (
+				548959F215A2860700D4D11C /* JDAppDelegate.h */,
+				548959F315A2860700D4D11C /* JDAppDelegate.m */,
+				548959F515A2860700D4D11C /* MainStoryboard.storyboard */,
+				54BFA92C15A5253900CBB9E6 /* JDDownloadViewController.h */,
+				54BFA92D15A5253900CBB9E6 /* JDDownloadViewController.m */,
+				548959F815A2860700D4D11C /* JDMasterViewController.h */,
+				548959F915A2860700D4D11C /* JDMasterViewController.m */,
+				548959FB15A2860700D4D11C /* JDDetailViewController.h */,
+				548959FC15A2860700D4D11C /* JDDetailViewController.m */,
+				548959EA15A2860700D4D11C /* Supporting Files */,
+			);
+			path = JpegDisplayTestByTatsuroUeda;
+			sourceTree = "<group>";
+		};
+		548959EA15A2860700D4D11C /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				548959EB15A2860700D4D11C /* JpegDisplayTestByTatsuroUeda-Info.plist */,
+				548959EC15A2860700D4D11C /* InfoPlist.strings */,
+				548959EF15A2860700D4D11C /* main.m */,
+				548959F115A2860700D4D11C /* JpegDisplayTestByTatsuroUeda-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		548959DE15A2860700D4D11C /* JpegDisplayTestByTatsuroUeda */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 54895A0015A2860700D4D11C /* Build configuration list for PBXNativeTarget "JpegDisplayTestByTatsuroUeda" */;
+			buildPhases = (
+				548959DB15A2860700D4D11C /* Sources */,
+				548959DC15A2860700D4D11C /* Frameworks */,
+				548959DD15A2860700D4D11C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = JpegDisplayTestByTatsuroUeda;
+			productName = JpegDisplayTestByTatsuroUeda;
+			productReference = 548959DF15A2860700D4D11C /* JpegDisplayTestByTatsuroUeda.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		548959D615A2860700D4D11C /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+			};
+			buildConfigurationList = 548959D915A2860700D4D11C /* Build configuration list for PBXProject "JpegDisplayTestByTatsuroUeda" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 548959D415A2860700D4D11C;
+			productRefGroup = 548959E015A2860700D4D11C /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				548959DE15A2860700D4D11C /* JpegDisplayTestByTatsuroUeda */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		548959DD15A2860700D4D11C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				548959EE15A2860700D4D11C /* InfoPlist.strings in Resources */,
+				548959F715A2860700D4D11C /* MainStoryboard.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		548959DB15A2860700D4D11C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				548959F015A2860700D4D11C /* main.m in Sources */,
+				548959F415A2860700D4D11C /* JDAppDelegate.m in Sources */,
+				548959FA15A2860700D4D11C /* JDMasterViewController.m in Sources */,
+				548959FD15A2860700D4D11C /* JDDetailViewController.m in Sources */,
+				54BFA92E15A5253900CBB9E6 /* JDDownloadViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		548959EC15A2860700D4D11C /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				548959ED15A2860700D4D11C /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		548959F515A2860700D4D11C /* MainStoryboard.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				548959F615A2860700D4D11C /* en */,
+			);
+			name = MainStoryboard.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		548959FE15A2860700D4D11C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		548959FF15A2860700D4D11C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		54895A0115A2860700D4D11C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "JpegDisplayTestByTatsuroUeda/JpegDisplayTestByTatsuroUeda-Prefix.pch";
+				INFOPLIST_FILE = "JpegDisplayTestByTatsuroUeda/JpegDisplayTestByTatsuroUeda-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		54895A0215A2860700D4D11C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "JpegDisplayTestByTatsuroUeda/JpegDisplayTestByTatsuroUeda-Prefix.pch";
+				INFOPLIST_FILE = "JpegDisplayTestByTatsuroUeda/JpegDisplayTestByTatsuroUeda-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		548959D915A2860700D4D11C /* Build configuration list for PBXProject "JpegDisplayTestByTatsuroUeda" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				548959FE15A2860700D4D11C /* Debug */,
+				548959FF15A2860700D4D11C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		54895A0015A2860700D4D11C /* Build configuration list for PBXNativeTarget "JpegDisplayTestByTatsuroUeda" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				54895A0115A2860700D4D11C /* Debug */,
+				54895A0215A2860700D4D11C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 548959D615A2860700D4D11C /* Project object */;
+}
