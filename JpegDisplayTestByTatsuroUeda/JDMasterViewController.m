@@ -246,7 +246,7 @@
         // のように、プロパティのプロパティに値を入れようとしても入らないので注意。
         controller.filePath = filePath;
         //    NSLog(@"sender = %@", sender);
-        NSLog(@"filePath = %@", filePath);
+//        NSLog(@"filePath = %@", filePath);
     }
 }
 

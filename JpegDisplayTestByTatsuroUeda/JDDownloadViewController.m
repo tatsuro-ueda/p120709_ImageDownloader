@@ -7,6 +7,7 @@
 //
 
 #import "JDDownloadViewController.h"
+#import "AccountEditViewController.h"
 
 @implementation JDDownloadViewController
 @synthesize urlField = _urlField;
@@ -97,7 +98,7 @@
     
     // 入力されているURLを取得する
     NSURL* url = [NSURL URLWithString:self.urlField.text];
-    NSLog(@"%@", url);
+//    NSLog(@"%@", url);
     
     // URLの構文が間違っているときなど、「NSURL」のインスタンスが
     // 作成できないときはエラーメッセージを表示する
@@ -139,7 +140,7 @@
         // ダウンロード成功
         // ファイル名を決定する
         NSString *filePath = [self newFilePathWithURL:url];
-        NSLog(@"%@", filePath);
+//        NSLog(@"%@", filePath);
         
         // ファイルに保存する
         isSccessed = [data writeToFile:filePath
@@ -205,7 +206,7 @@
 {
     // URLからベースになっているファイル名を取得する
     NSString *basename = [[[url path] lastPathComponent] stringByDeletingPathExtension];
-    NSLog(@"%@", basename);
+//    NSLog(@"%@", basename);
     
     // ファイル名が取得できなかったときは、固定の名前を使用する
     if ([basename length] == 0 || [basename isEqual:@"/"]) {
@@ -215,7 +216,7 @@
     
     // 拡張子を取得する
     NSString *extension = [[url path] pathExtension];
-    NSLog(@"%@", extension);
+//    NSLog(@"%@", extension);
     
     // 「Documents」ディレクトリのパスを取得する
     NSString *docDirPath =
@@ -236,7 +237,7 @@
             
             // まずは連番をつけずに、元ファイルの名前をそのまま使用する
             tempFilePath = [docDirPath stringByAppendingPathComponent:basename];
-            NSLog(@"%@", tempFilePath);
+//            NSLog(@"%@", tempFilePath);
         }
         else
         {
@@ -252,12 +253,12 @@
             
             tempFilePath =
             [tempFilePath stringByAppendingPathExtension:extension];
-            NSLog(@"%@", tempFilePath);
+//            NSLog(@"%@", tempFilePath);
         }
         
         // ファイルが存在するかチェックする
         BOOL rt = [fileManager fileExistsAtPath:tempFilePath];
-        NSLog(@"rt = %d", rt);
+//        NSLog(@"rt = %d", rt);
         if (![fileManager fileExistsAtPath:tempFilePath]) {
 //        if (YES) {
             
@@ -453,5 +454,68 @@
     
     // プログレスビューを非表示
     self.progressView.hidden = YES;
+}
+
+// 認証情報が要求されたときに呼ばれるメソッド
+- (void)connection:(NSURLConnection *)connection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge
+{
+    // 認証の失敗回数を取得する
+    NSInteger count = challenge.previousFailureCount;
+    
+    if (count == 0) {
+        
+        // 最初の認証要求なのでアカウント入力画面を表示する
+        NSString *method;
+        method = challenge.protectionSpace.authenticationMethod;
+        
+        // HTTPベーシック認証のみ対応する
+        if ([method isEqualToString:NSURLAuthenticationMethodHTTPBasic]) {
+            
+            // アカウント入力画面を表示する
+            NSLog(@"Authentication Required");
+            [self performSegueWithIdentifier:@"authentication" sender:self];
+//            AccountEditViewController *accountView;
+//            
+//            accountView = [[AccountEditViewController alloc] initWithNibName:nil
+//                                                                      bundle:nil];
+//            accountView.authenticationChallenge = challenge;
+//            [self presentModalViewController:accountView animated:YES]
+        }
+        else {
+            
+            // 対応していない認証方法なのでキャンセルして、エラーメッセージを表示する
+            [challenge.sender cancelAuthenticationChallenge:challenge];
+            
+            // エラーメッセージを表示する
+            NSString *title = @"Authentication Error";
+            NSString *msg = @"The authentication method is not supported.";
+            
+            UIAlertView *alertView;
+            
+            alertView = [[UIAlertView alloc] initWithTitle:title
+                                                   message:msg
+                                                  delegate:nil
+                                         cancelButtonTitle:@"OK"
+                                         otherButtonTitles:nil];
+            [alertView show];
+        }
+    }
+    else {
+        
+        // 既に失敗しているのでキャンセルして、エラーメッセージを表示する
+        [challenge.sender cancelAuthenticationChallenge:challenge];
+        
+        // エラーメッセージを表示する
+        NSString *title = @"Authentication Error";
+        NSString *msg = @"User Name or Password is invalid";
+        UIAlertView *alertView;
+        
+        alertView = [[UIAlertView alloc]initWithTitle:title
+                                              message:msg
+                                             delegate:nil
+                                    cancelButtonTitle:@"OK"
+                                    otherButtonTitles:nil];
+        [alertView show];
+    }
 }
 @end

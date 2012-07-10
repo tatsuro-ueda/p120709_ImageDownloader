@@ -16,6 +16,7 @@
 		548959F715A2860700D4D11C /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 548959F515A2860700D4D11C /* MainStoryboard.storyboard */; };
 		548959FA15A2860700D4D11C /* JDMasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 548959F915A2860700D4D11C /* JDMasterViewController.m */; };
 		548959FD15A2860700D4D11C /* JDDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 548959FC15A2860700D4D11C /* JDDetailViewController.m */; };
+		54A63DD815ABB49800C1A232 /* AccountEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 54A63DD715ABB49800C1A232 /* AccountEditViewController.m */; };
 		54BFA92E15A5253900CBB9E6 /* JDDownloadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 54BFA92D15A5253900CBB9E6 /* JDDownloadViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -35,6 +36,8 @@
 		548959F915A2860700D4D11C /* JDMasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JDMasterViewController.m; sourceTree = "<group>"; };
 		548959FB15A2860700D4D11C /* JDDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JDDetailViewController.h; sourceTree = "<group>"; };
 		548959FC15A2860700D4D11C /* JDDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JDDetailViewController.m; sourceTree = "<group>"; };
+		54A63DD615ABB49800C1A232 /* AccountEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountEditViewController.h; sourceTree = "<group>"; };
+		54A63DD715ABB49800C1A232 /* AccountEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountEditViewController.m; sourceTree = "<group>"; };
 		54BFA92C15A5253900CBB9E6 /* JDDownloadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDDownloadViewController.h; sourceTree = "<group>"; };
 		54BFA92D15A5253900CBB9E6 /* JDDownloadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDDownloadViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -92,6 +95,8 @@
 				548959F915A2860700D4D11C /* JDMasterViewController.m */,
 				548959FB15A2860700D4D11C /* JDDetailViewController.h */,
 				548959FC15A2860700D4D11C /* JDDetailViewController.m */,
+				54A63DD615ABB49800C1A232 /* AccountEditViewController.h */,
+				54A63DD715ABB49800C1A232 /* AccountEditViewController.m */,
 				548959EA15A2860700D4D11C /* Supporting Files */,
 			);
 			path = JpegDisplayTestByTatsuroUeda;
@@ -175,6 +180,7 @@
 				548959FA15A2860700D4D11C /* JDMasterViewController.m in Sources */,
 				548959FD15A2860700D4D11C /* JDDetailViewController.m in Sources */,
 				54BFA92E15A5253900CBB9E6 /* JDDownloadViewController.m in Sources */,
+				54A63DD815ABB49800C1A232 /* AccountEditViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
