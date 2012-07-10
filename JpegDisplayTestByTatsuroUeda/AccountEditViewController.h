@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AccountEditViewController : UIViewController<UITextFieldDelegate>
+@interface AccountEditViewController : UIViewController
 
 // プロパティの定義
 @property (weak, nonatomic) IBOutlet UITextField *userNameField;

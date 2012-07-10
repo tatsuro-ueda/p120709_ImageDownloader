@@ -473,6 +473,7 @@
             
             // アカウント入力画面を表示する
             NSLog(@"Authentication Required");
+            _challenge = challenge;
             [self performSegueWithIdentifier:@"authentication" sender:self];
 //            AccountEditViewController *accountView;
 //            
@@ -517,5 +518,11 @@
                                     otherButtonTitles:nil];
         [alertView show];
     }
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    AccountEditViewController *controller = segue.destinationViewController;
+    controller.authenticationChallenge = _challenge;
 }
 @end

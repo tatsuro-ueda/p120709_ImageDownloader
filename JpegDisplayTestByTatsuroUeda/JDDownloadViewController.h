@@ -12,6 +12,7 @@
 {
     long long       _downloadedFileSize;
     long long       _expectedFileSize;
+    NSURLAuthenticationChallenge    *_challenge;
 }
 
 @property (strong, nonatomic) IBOutlet UITextField *urlField;
