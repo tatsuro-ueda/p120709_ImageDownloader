@@ -20,4 +20,5 @@
 @property (strong) IBOutlet UIImageView *imageView;
 @property (strong) NSString *filePath;
 
+- (IBAction)upload:(id)sender;
 @end

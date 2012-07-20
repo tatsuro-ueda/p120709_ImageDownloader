@@ -95,4 +95,6 @@
     return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
 }
 
+- (IBAction)upload:(id)sender {
+}
 @end
