@@ -7,6 +7,8 @@
 //
 
 #import "JDDetailViewController.h"
+#import "AFHTTPClient.h"
+#import "AFHTTPRequestOperation.h"
 
 @interface JDDetailViewController ()
 @end
@@ -96,5 +98,17 @@
 }
 
 - (IBAction)upload:(id)sender {
+    NSURL *url = [NSURL URLWithString:@"http://192.168.100.203:4567/"];
+    AFHTTPClient *httpClient = [[AFHTTPClient alloc] initWithBaseURL:url];
+    NSData *imageData = UIImageJPEGRepresentation([UIImage imageNamed:_filePath.lastPathComponent], 0.5);
+    NSMutableURLRequest *request = [httpClient multipartFormRequestWithMethod:@"POST" path:@"/upload" parameters:nil constructingBodyWithBlock: ^(id <AFMultipartFormData>formData) {
+        [formData appendPartWithFileData:imageData name:@"file" fileName:_filePath.lastPathComponent mimeType:@"image/jpeg"];
+    }];
+    
+    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+//    [operation setUploadProgressBlock:^(NSInteger bytesWritten, NSInteger totalBytesWritten, NSInteger totalBytesExpectedToWrite) {
+//        NSLog(@"Sent %d of %d bytes", totalBytesWritten, totalBytesExpectedToWrite);
+//    }];
+    [operation start];
 }
 @end
